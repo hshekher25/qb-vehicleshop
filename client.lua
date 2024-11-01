@@ -207,23 +207,51 @@ local function createVehZones(shopName, entity)
             end
         end)
     else
-        exports['qb-target']:AddTargetEntity(entity, {
-            options = {
-                {
-                    type = 'client',
-                    event = 'qb-vehicleshop:client:showVehOptions',
-                    icon = 'fas fa-car',
-                    label = Lang:t('general.vehinteraction'),
-                    canInteract = function()
-                        local closestShop = insideShop
-                        return closestShop and (Config.Shops[closestShop]['Job'] == 'none' or PlayerData.job.name == Config.Shops[closestShop]['Job'])
-                    end
+        if Config.Target == "qb-target" then 
+            exports['qb-target']:AddTargetEntity(entity, {
+                options = {
+                    {
+                        type = 'client',
+                        event = 'qb-vehicleshop:client:showVehOptions',
+                        icon = 'fas fa-car',
+                        label = Lang:t('general.vehinteraction'),
+                        canInteract = function()
+                            local closestShop = insideShop
+                            return closestShop and (Config.Shops[closestShop]['Job'] == 'none' or PlayerData.job.name == Config.Shops[closestShop]['Job'])
+                        end
+                    },
                 },
-            },
-            distance = 3.0
-        })
-    end
-end
+                distance = 3.0
+            })
+        elseif Config.Target == "ox_target" then 
+       
+            exports.ox_target:addLocalEntity(entity, {
+                {
+                        type = "client",  -- Specify client-side interaction
+                        name ="showVehOptions", 
+                        event = "qb-vehicleshop:client:showVehOptions",  -- Event to trigger on interaction
+                        icon = "fas fa-car",  -- Icon to display
+                        label = Lang:t('general.vehinteraction'),  -- Label for the interaction
+                        distance = 3.0,
+                        groups = Config.Shops[insideShop],
+                        canInteract = function()
+                            print(insideShop)
+                            print(Config.Shops[insideShop]['Job'])
+                            print(PlayerData.job.name)
+                        
+                            local canInterac = insideShop and (Config.Shops[insideShop]['Job'] == 'none' or PlayerData.job.name == Config.Shops[insideShop]['Job'])   
+                            print(canInterac)
+                            return canInterac 
+                        end
+                    },
+
+            })
+        else
+            -- write code for your target 
+        end
+    end -- end of else
+end -- end of method
+
 
 -- Zones
 local function createFreeUseShop(shopShape, name)

@@ -10,6 +10,8 @@ Config.PreventFinanceSelling = false                  -- allow/prevent players f
 Config.FilterByMake = false                           -- adds a make list before selecting category in shops
 Config.SortAlphabetically = true                      -- will sort make, category, and vehicle selection menus alphabetically
 Config.HideCategorySelectForOne = true                -- will hide the category selection menu if a shop only sells one category of vehicle or a make has only one category
+Config.Target = 'ox_target' -- target = ox_target or qb-target
+Config.Management = 'qb-management'  -- use qb-management or qb-banking
 Config.Shops = {
     ['pdm'] = {
         ['Type'] = 'free-use', -- no player interaction is required to purchase a car

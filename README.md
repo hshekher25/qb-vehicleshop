@@ -1,5 +1,11 @@
 # qb-vehicleshop
 
+**Target Option:**
+* Added Support for qb-target and ox_target
+
+**Management Option: Where will go cardealer money**
+* Added option to choose qb-management or qb-banking
+
 **Test Drives:**
 * Configurable time
 * Returns player once time is up
